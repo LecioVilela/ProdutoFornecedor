@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "front-end-lecio"
+    }
+  },
+  "defaultProject": "front-end-lecio",
+  "cli": {
+    "analytics": false
+  }
 }
