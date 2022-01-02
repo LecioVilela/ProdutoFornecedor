@@ -1,24 +1,24 @@
-import { LoginComponent } from './login/login.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { ContaAppComponent } from './conta.app.component';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from "@angular/core";
+import { ContaAppComponent } from './conta.app.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { LoginComponent } from './login/login.component';
+import { ContaGuard } from './services/conta.guard';
 
 const contaRouterConfig: Routes = [
-  {
-    path: '', component: ContaAppComponent,
-    children: [
-      { path: 'cadastro', component: CadastroComponent},
-      { path: 'login', component: LoginComponent}
-    ]
-  }
-]
+    {
+        path: '', component: ContaAppComponent,
+        children: [
+            { path: 'cadastro', component: CadastroComponent, canActivate: [ContaGuard], canDeactivate: [ContaGuard] },
+            { path: 'login', component: LoginComponent, canActivate: [ContaGuard] }
+        ]
+    }
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(contaRouterConfig)
-  ],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forChild(contaRouterConfig)
+    ],
+    exports: [RouterModule]
 })
-
-export class ContaRountingModule { }
+export class ContaRoutingModule { }
